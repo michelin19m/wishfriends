@@ -1,0 +1,96 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/wish_lists/{wish_list_id}/items":
+    post:
+      summary: Creates a new item with images
+      tags:
+      - Items
+      parameters:
+      - name: wish_list_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: item created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                images:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+              required:
+              - name
+              - description
+  "/users":
+    post:
+      summary: Registers a new user with profile picture
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '201':
+          description: user created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                password_confirmation:
+                  type: string
+                profile_picture:
+                  type: string
+                  format: binary
+              required:
+              - email
+              - password
+              - password_confirmation
+  "/wish_lists":
+    post:
+      summary: Creates a wish list
+      tags:
+      - Wish Lists
+      parameters: []
+      responses:
+        '201':
+          description: wish list created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+servers:
+- url: http://localhost:3000
+  variables:
+    defaultHost:
+      default: localhost:3000

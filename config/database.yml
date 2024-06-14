@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: wishfriends_development
+
+test:
+  <<: *default
+  database: wishfriends_test
+
+production:
+  <<: *default
+  database: wishfriends_production
+  username: wishfriends
+  password: <%= ENV['WISHFRIENDS_DATABASE_PASSWORD'] %>
