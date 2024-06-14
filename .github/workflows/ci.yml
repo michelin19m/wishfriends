@@ -55,6 +55,12 @@ jobs:
       - name: Set environment to test
         run: echo "RAILS_ENV=test" >> $GITHUB_ENV
 
+      - name: Set up Active Storage configuration
+        run: |
+          echo "test:
+                  service: Disk
+                  root: <%= Rails.root.join('tmp/storage') %>" > config/storage.yml
+
       - name: Set up database
         run: |
           bin/rails db:create
