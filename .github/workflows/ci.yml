@@ -52,6 +52,9 @@ jobs:
                   host: localhost
                   database: wishfriends_test" > config/database.yml
 
+      - name: Set environment to test
+        run: echo "RAILS_ENV=test" >> $GITHUB_ENV
+
       - name: Set up database
         run: |
           bin/rails db:create
