@@ -3,5 +3,6 @@ class User < ApplicationRecord
          :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
   
   has_one_attached :profile_picture
+  validates :email, presence: true
 
 end

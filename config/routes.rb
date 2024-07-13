@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'profiles/show'
+  get 'profiles/update'
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
 
@@ -9,5 +11,4 @@ Rails.application.routes.draw do
     resources :items
   end
   resources :bookings, only: [:create, :index, :destroy]
-  root 'home#index'
 end
